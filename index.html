@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebRTC OpenAI Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #log {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebRTC OpenAI Demo</h1>
+    <button id="connectButton" onclick="init()">开始连接</button>
+    <button id="disconnectButton" style="display: none;">断开连接</button>
+    <button id="sendButton" onclick="sendMessage()" disabled>发送测试消息</button>
+    <div id="status">状态：未连接</div>
+    <div id="log"></div>
+
+    <script>
+        // 重写console.log来显示在页面上
+        const oldLog = console.log;
+        console.log = function() {
+            const args = Array.from(arguments);
+            const message = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg
+            ).join(' ');
+            
+            const logDiv = document.getElementById('log');
+            if (logDiv) {
+                logDiv.innerHTML += message + '<br>';
+                logDiv.scrollTop = logDiv.scrollHeight;
+            }
+            oldLog.apply(console, arguments);
+        };
+    </script>
+    <script src="init.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
