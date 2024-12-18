@@ -1,5 +1,7 @@
 # WebRTC OpenAI 实时通信应用
 
+![本地图片](images/640.jpg)
+
 这是一个使用 WebRTC 技术与 OpenAI API 进行实时通信的 Web 应用程序。该应用支持通过数据通道与 OpenAI 进行实时数据交换。
 
 ## 功能特点
